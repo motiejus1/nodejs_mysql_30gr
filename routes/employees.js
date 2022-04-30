@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     //
     // /products -> pasirenka atitinkama funkcija kuria reikia ivykdti ir grazina atsakyma atvaizdavimui
     // /products kreipiasi i kontroleri, kontroleris kreipiasi i duomenu baze(modeli) ir grazina is modelio atsakyma
-    databaseConnection.query('SELECT * FROM employees', function(err, rows){
+    databaseConnection.query('SELECT * FROM employees_employees ee', function(err, rows){
         if(err) {
             req.flash('error', err);
             res.render('employees',{data: 'test'});
