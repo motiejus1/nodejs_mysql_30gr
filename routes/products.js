@@ -152,7 +152,7 @@ router.post('/update/:productCode', function(req, res, next) {
             buyPrice: buyPrice
         }
 
-        databaseConnection.query('UPDATE productus SET ? WHERE productCode="'+productCode+'"', form_data, function(err, result){
+        databaseConnection.query('UPDATE products SET ? WHERE productCode="'+productCode+'"', form_data, function(err, result){
             if(err) {
                 req.flash('error', err);
                 res.render('products/edit', {

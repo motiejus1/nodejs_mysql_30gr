@@ -21,7 +21,7 @@
             Edit product
         </div>
         <div class="card-body">
-            <form action="/products/edit" method="post">
+            <form action="/products/update/<%= productCode %>" method="post">
                 <div class="form-group">
                     <label>Product Name</label>
                     <input type="text" class="form-control" name="productName" value="<%= productName %>">
