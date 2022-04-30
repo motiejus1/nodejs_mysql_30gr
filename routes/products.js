@@ -84,4 +84,17 @@ router.post('/add', function(req,res,next){
 
 });
 
+router.get('/delete/(:productCode)', function(req,res,next) {
+    let productCode = req.params.productCode;
+    databaseConnection.query('DELETE FROM products WHERE productCode="'+productCode+'"',function(err,result){
+        if(err) {
+            req.flash('error', err);
+            res.redirect('/products');
+        } else {
+            req.flash('success', 'Produktas, kurio kad yra' + productCode + ' sekmingai istrintas' );
+            res.redirect('/products');
+        }
+    });
+});
+
 module.exports = router;
