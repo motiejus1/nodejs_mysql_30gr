@@ -10,6 +10,7 @@ var mysql = require('mysql');
 var connection = require('./lib/database');
 
 var productsRouter = require('./routes/products');
+var productLinesRouter = require('./routes/productlines');
 var app = express();
 
 //Nustatome atvaizdavimo mechanizma
@@ -29,9 +30,14 @@ app.use(session({
 
 app.use(flash());
 app.use('/products', productsRouter);
+app.use('/productlines', productLinesRouter);
 
 app.use(function(req,res,next) {
     next(createError(404));
 });
 
 app.listen(3000);
+
+// SELECT * FROM `employees_employees` ee
+// LEFT JOIN offices o
+// ON o.officeCode = ee.officeCode

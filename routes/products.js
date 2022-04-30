@@ -170,8 +170,23 @@ router.post('/update/:productCode', function(req, res, next) {
         });
 
     }
+    
+
+});
 
 
+
+//tiktai uz vieno produkto informacijos atvaizdavima
+router.get('/statistics', function(req, res, next) {
+   
+    databaseConnection.query('SELECT * FROM order_statistics', function(err, rows){
+        if(err) {
+            req.flash('error', err);
+            res.render('products/statistics',{data: ''});
+        } else {
+            res.render('products/statistics',{data:rows}); //data:rows yra sql uzklausos rezultatas kaip JSON masyvas
+        }
+    }); 
 });
 
 
