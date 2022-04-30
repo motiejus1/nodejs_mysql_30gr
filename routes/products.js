@@ -35,7 +35,7 @@ router.get('/add', function(req, res, next){
     })          //add.ejs
 });
 
-//produkto idejimo veiksma
+//produkto idejimo veiksmas
 
 router.post('/add', function(req,res,next){
 
