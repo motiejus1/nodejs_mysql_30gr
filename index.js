@@ -11,6 +11,7 @@ var connection = require('./lib/database');
 
 var productsRouter = require('./routes/products');
 var productLinesRouter = require('./routes/productlines');
+var employeesRouter = require('./routes/employees');
 var app = express();
 
 //Nustatome atvaizdavimo mechanizma
@@ -31,6 +32,7 @@ app.use(session({
 app.use(flash());
 app.use('/products', productsRouter);
 app.use('/productlines', productLinesRouter);
+app.use('/employees', employeesRouter);
 
 app.use(function(req,res,next) {
     next(createError(404));
