@@ -44,6 +44,43 @@ router.post('/add', function(req,res,next){
     let productLine = req.body.productLine;
     let buyPrice = req.body.buyPrice;
 
+    let errors = false;
+
+    if(productCode.length === 0 || productName.length === 0 || productLine.length === 0 || buyPrice.length === 0) {
+        errors = true;
+        req.flash('error', 'Visi laukeliai turi buti uzpildyti');
+
+        res.render('products/add', {
+            productCode: productCode ,
+            productName: productName,
+            productLine: productLine,
+            buyPrice: buyPrice
+        })
+    }
+
+    if(!errors) {
+        var form_data = {
+            productCode: productCode ,
+            productName: productName,
+            productLine: productLine,
+            buyPrice: buyPrice
+        }
+        databaseConnection.query('INSERT INTO products SET ?', form_data, function(err,result) {
+            if(err) {
+                req.flash('error', err);
+                res.render('products/add',{
+                    productCode: form_data.productCode ,
+                    productName: form_data.productName,
+                    productLine: form_data.productLine,
+                    buyPrice: form_data.buyPrice
+                })
+            } else {
+                req.flash('success', 'Produktas pridetas');
+                res.redirect('/products');
+            }
+        });
+    }
+
 
 });
 
